@@ -13,3 +13,4 @@ Correct change is calculated and printed in largest denominations.
 This is [Skill Distillery](https://skilldistillery.com) week 1 homework.
 
 ### Lesson Learned
+How to commit from VIM
