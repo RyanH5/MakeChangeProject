@@ -73,51 +73,81 @@ public class MakeChangeApp {
 				billsOrCoins = sum / 10000;
 				sum = sum % 10000;
 				coins += " " +billsOrCoins + " one-hundred dollar bill"; 
+				if (billsOrCoins > 1) {
+					coins += "s";
+				}
 				
 			}	else if (sum >= 5000) {
 				billsOrCoins = sum / 5000;
 				sum = sum % 5000;
 				coins += " " + billsOrCoins + " fifty dollar bill";
+				if (billsOrCoins > 1) {
+					coins += "s";
+				}
 				
 			}	else if (sum >= 2000) {
 				billsOrCoins = sum / 2000;
 				sum = sum % 2000;
 				coins += " " + billsOrCoins + " twenty dollar bill";
+				if (billsOrCoins > 1) {
+					coins += "s";
+				}
 				
 			}	else if (sum >= 1000) {
 				billsOrCoins = sum / 1000;
 				sum = sum % 1000;
 				coins += " " + billsOrCoins + " ten dollar bill";
+				if (billsOrCoins > 1) {
+					coins += "s";
+				}
 				
 			}	else if (sum >= 500) {
 				billsOrCoins = sum / 500;
 				sum = sum % 500;
 				coins += " " + billsOrCoins + " five dollar bill";
+				if (billsOrCoins > 1) {
+					coins += "s";
+				}
 				
 			}	else if (sum >= 100) {
 				billsOrCoins = sum / 100;
 				sum = sum % 100;
 				coins += " " + billsOrCoins + " one dollar bill";
+				if (billsOrCoins > 1) {
+					coins += "s";
+				}
 				
 			}	else if (sum >= 25) {
 				billsOrCoins = sum / 25;
 				sum = sum % 25;
 				coins += " " + billsOrCoins + " quarter";
+				if (billsOrCoins > 1) {
+					coins += "s";
+				}
 				
 			}	else if (sum >= 10) {
 				billsOrCoins = sum / 10;
 				sum = sum % 10;
 				coins += " " + billsOrCoins + " dime";
+				if (billsOrCoins > 1) {
+					coins += "s";
+				}
 				
 			}	else if (sum >= 5) {
 				billsOrCoins = sum / 5;
 				sum = sum % 5;
 				coins += " " + billsOrCoins + " nickel";
+				if (billsOrCoins > 1) {
+					coins += "s";
+				}
 				
 			}	else if (sum >= 1) {
 				billsOrCoins = sum / 1;
 				sum = sum % 1;
-				coins += " " + billsOrCoins + " penny";				
+				coins += " " + billsOrCoins;	
+				String penny = (billsOrCoins > 1) ?  " pennies" : "penny";
+				coins += penny;
+				
 			}
 		}
 		System.out.println();
