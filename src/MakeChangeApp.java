@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class MakeChangeApp {
@@ -29,10 +30,14 @@ public class MakeChangeApp {
 		int scaledPrice = makeInt(price);
 		int scaledPayment = makeInt(payment);
 		int changeDifference;
+		double insufficientPaymentBalance = price - payment;
 		
 		if (scaledPrice > scaledPayment) {
-			System.out.println("Insufficient payment. Customer owes: Cents:");
+			System.out.println();
+			System.out.print("Insufficient payment. Customer owes: $");
 			changeDifference = remainderInCents(scaledPrice, scaledPayment);
+			double result = (double)Math.round(insufficientPaymentBalance * 100d) / 100d;
+			System.out.println(result);
 			
 		}	else if (scaledPrice < scaledPayment) {
 			System.out.println("Thank you. Pay customer: ");
@@ -114,7 +119,6 @@ public class MakeChangeApp {
 				sum = sum % 1;
 				coins += " " + billsOrCoins + " penny";				
 			}
-//			System.out.println(sum);
 		}
 		System.out.println();
 		System.out.println(coins);
