@@ -145,7 +145,7 @@ public class MakeChangeApp {
 				billsOrCoins = sum / 1;
 				sum = sum % 1;
 				coins += " " + billsOrCoins;	
-				String penny = (billsOrCoins > 1) ?  " pennies" : "penny";
+				String penny = (billsOrCoins > 1) ?  " pennies" : " penny";
 				coins += penny;
 				
 			}
