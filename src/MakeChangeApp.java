@@ -2,19 +2,36 @@ import java.util.Scanner;
 
 public class MakeChangeApp {
 
+	public boolean completed = false;
+	
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
-		double price = askPrice(kb);
-		System.out.println(price);
-		System.out.println();
 
 		MakeChangeApp register = new MakeChangeApp();
-
-		double payment = register.amountTendered(kb);
-		register.verifyPayment(price, payment, register);
+		while (!register.completed) {
+			double price = askPrice(kb);
+			System.out.println(price);
+			System.out.println();
+			
+			double payment = register.amountTendered(kb);
+			String verifiedPayment = register.verifyPayment(price, payment, register);
+			System.out.println(verifiedPayment);
+			System.out.println();
+			register.doYouHaveItemsToBuy(kb, register);
+		}
+		kb.close();
 
 	}
 
+	public void doYouHaveItemsToBuy(Scanner kb, MakeChangeApp register) {
+		System.out.println("Will that be all? (y/n)");
+		String response = kb.next();
+		if (response.equals("y")) {
+			register.completed = true;
+			System.out.println("Thank you. Come again");
+		}
+	}
+	
 	public static double askPrice(Scanner kb) {
 		System.out.println("How much does this item cost? (x.xx)");
 		double price = kb.nextDouble();
@@ -27,27 +44,27 @@ public class MakeChangeApp {
 		return amountTendered;
 	}
 
-	public void verifyPayment(double price, double payment, MakeChangeApp register) {
+	public String verifyPayment(double price, double payment, MakeChangeApp register) {
 		int scaledPrice = makeInt(price);
 		int scaledPayment = makeInt(payment);
 		int changeDifference;
 		double insufficientPaymentBalance = price - payment;
+		String response;
 
 		if (scaledPrice > scaledPayment) {
 			System.out.println();
-			System.out.print("Insufficient payment. Customer owes: $");
+			response = "Insufficient payment. Customer owes: $";
 			changeDifference = register.remainderInCents(scaledPrice, scaledPayment);
 			double result = (double) Math.round(insufficientPaymentBalance * 100d) / 100d;
-			System.out.println(result);
+			return response + result;
 
 		} else if (scaledPrice < scaledPayment) {
-			System.out.println("Thank you. Pay customer: ");
+			response = "Thank you. Pay customer: ";
 			changeDifference = register.remainderInCents(scaledPrice, scaledPayment);
-			register.coinsBreakDown(changeDifference);
+			return response + register.coinsBreakDown(changeDifference);
 
-		} else {
-			System.out.println();
-			System.out.println("Thank you. Come again.");
+		} else {			
+			return "Thank you. Come again.";
 
 		}
 	}
@@ -56,7 +73,6 @@ public class MakeChangeApp {
 		return (int) (amount * 100);
 	}
 
-//	why can remainderInCents be called NOT on instance. ????????
 	public int remainderInCents(int price, int payment) {
 		int change = price - payment;
 		if (price < payment) {
@@ -73,7 +89,7 @@ public class MakeChangeApp {
 		return a;
 	}
 
-	public void coinsBreakDown(int sum) {
+	public String coinsBreakDown(int sum) {
 		String coins = "";
 		int[] currencies = new int[10];
 		currencies[0] = 10000;
@@ -102,12 +118,10 @@ public class MakeChangeApp {
 					}
 				}
 		}
-		System.out.println(coins);
+		return coins;
 	}
 
 	public String printCurrency(int currency) {
-//		String currStr = "";
-
 		switch (currency) {
 		case 10000:
 			return" one hundred dollar bill";
