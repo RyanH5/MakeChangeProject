@@ -11,7 +11,7 @@ public class MakeChangeApp {
 		MakeChangeApp register = new MakeChangeApp();
 
 		double payment = register.amountTendered(kb);
-		System.out.println(payment);
+//		System.out.println(payment);
 		register.verifyPayment(price, payment, register);
 
 	}
@@ -90,7 +90,6 @@ public class MakeChangeApp {
 
 		for (int i = 0; i < currencies.length; i++) {
 			int billDivisor = currencies[i];
-//			if (sum > billDivisor) {
 				while (sum > billDivisor) {
 					int billsOrCoins;
 					billsOrCoins = updateBillsAndSum(sum, billDivisor)[0];
@@ -100,10 +99,9 @@ public class MakeChangeApp {
 						coins += "s";
 					}
 					if (billsOrCoins > 1 && billDivisor == 1) {
-						coins += "ies";
+						coins = coins.substring(0, coins.length() -1) + "ies";
 					}
 				}
-//			}
 		}
 		System.out.println(coins);
 	}
