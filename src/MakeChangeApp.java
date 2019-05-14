@@ -11,7 +11,6 @@ public class MakeChangeApp {
 		MakeChangeApp register = new MakeChangeApp();
 
 		double payment = register.amountTendered(kb);
-//		System.out.println(payment);
 		register.verifyPayment(price, payment, register);
 
 	}
@@ -91,14 +90,14 @@ public class MakeChangeApp {
 		for (int i = 0; i < currencies.length; i++) {
 			int billDivisor = currencies[i];
 				while (sum > billDivisor) {
-					int billsOrCoins;
-					billsOrCoins = updateBillsAndSum(sum, billDivisor)[0];
+					int billsOrCoinsQuant;
+					billsOrCoinsQuant = updateBillsAndSum(sum, billDivisor)[0];
 					sum = updateBillsAndSum(sum, billDivisor)[1];
-					coins += " " + billsOrCoins + printCurrency(billDivisor);
-					if (billsOrCoins > 1 && billDivisor != 1) {
+					coins += " " + billsOrCoinsQuant + printCurrency(billDivisor);
+					if (billsOrCoinsQuant > 1 && billDivisor != 1) {
 						coins += "s";
 					}
-					if (billsOrCoins > 1 && billDivisor == 1) {
+					if (billsOrCoinsQuant > 1 && billDivisor == 1) {
 						coins = coins.substring(0, coins.length() -1) + "ies";
 					}
 				}
@@ -107,42 +106,31 @@ public class MakeChangeApp {
 	}
 
 	public String printCurrency(int currency) {
-		String currStr = "";
+//		String currStr = "";
 
 		switch (currency) {
 		case 10000:
-			currStr = " one hundred dollar bill";
-			break;
+			return" one hundred dollar bill";
 		case 5000:
-			currStr = " fifty dollar bill";
-			break;
+			return " fifty dollar bill";
 		case 2000:
-			currStr = " twenty dollar bill";
-			break;
+			return " twenty dollar bill";
 		case 1000:
-			currStr = " ten dollar bill";
-			break;
+			return " ten dollar bill";
 		case 500:
-			currStr = " five dollar bill";
-			break;
+			return " five dollar bill";
 		case 100:
-			currStr = " one dollar bill";
-			break;
+			return " one dollar bill";
 		case 25:
-			currStr = " quarter";
-			break;
+			return " quarter";
 		case 10:
-			currStr = " dime";
-			break;
+			return " dime";
 		case 5:
-			currStr = " nickel";
-			break;
+			return " nickel";
 		case 1:
-			currStr = " penny";
-			break;
+			return " penny";
 		default:
-			currStr = "";
+			return "";
 		}
-		return currStr;
 	}
 }
